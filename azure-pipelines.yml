@@ -10,12 +10,6 @@ pool:
   name: BegonaDev
 
   steps:
-    - task: Bash@3
-      displayName: "swap production values"
-      inputs:
-        filePath: "ci/productionize.sh"
-        arguments: "--backend-url ${{ parameters.backendUrl }} --publisher-id ${{ parameters.publisherId }} --contribution-id ${{ parameters.contributionId }} --backend-function-key ${{ parameters.backendFunctionKey }}"
-        workingDirectory: "ci"
 
     - task: UseDotNet@2
       displayName: "Use .Net Core 2.1.700"
