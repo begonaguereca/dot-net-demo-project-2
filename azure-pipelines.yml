@@ -6,11 +6,13 @@
 trigger:
 - master
 
+jobs:
+  - job: DotNet2Test
+
 pool:
   name: BegonaDev
 
   steps:
-
     - task: UseDotNet@2
       displayName: "Use .Net Core 2.1.700"
       inputs:
