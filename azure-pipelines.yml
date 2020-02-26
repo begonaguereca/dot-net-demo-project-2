@@ -9,11 +9,33 @@ trigger:
 pool:
   name: BegonaDev
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  steps:
+    - task: Bash@3
+      displayName: "swap production values"
+      inputs:
+        filePath: "ci/productionize.sh"
+        arguments: "--backend-url ${{ parameters.backendUrl }} --publisher-id ${{ parameters.publisherId }} --contribution-id ${{ parameters.contributionId }} --backend-function-key ${{ parameters.backendFunctionKey }}"
+        workingDirectory: "ci"
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - task: UseDotNet@2
+      displayName: "Use .Net Core 2.1.700"
+      inputs:
+        version: 2.1.700
+
+    - task: DotNetCoreCLI@2
+      displayName: "restore packages"
+      inputs:
+        command: restore
+        projects: "**/*.csproj"
+
+    - task: DotNetCoreCLI@2
+      displayName: "build"
+      inputs:
+        command: publish
+        publishWebProjects: false
+        projects: "**/demo-dot-net-2.csproj"
+       
+    - task: PublishBuildArtifacts@1
+      displayName: "publish artifacts"
+      inputs:
+        ArtifactName: Demo 2
