@@ -5,9 +5,16 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>demo_dot_net_2</RootNamespace>
     <packageRestore>
-        <add key="enabled" value="True" />
-        <add key="automatic" value="True" />
+      <add key="enabled" value="True" />
+      <add key="automatic" value="True" />
     </packageRestore>
   </PropertyGroup>
   
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="Castle.Core" Version="4.4.0" />
+  </ItemGroup>
 </Project>
