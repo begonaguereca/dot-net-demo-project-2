@@ -21,7 +21,7 @@ jobs:
       - task: Cache@2
         displayName: Cache NuGet packages
         inputs:
-          key: 'nuget | "$(Agent.OS)" | $(Build.Repository.Name)/packages.lock.json'
+          key: 'nuget | "$(Agent.OS)" | $(Pipeline.Workspace)/packages.lock.json'
           restoreKeys: |
             nuget | "$(Agent.OS)"
             nuget
