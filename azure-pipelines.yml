@@ -11,34 +11,39 @@ jobs:
     pool:
       name: BegonaDev
     steps:
+      - script: echo $(Build.Repository.Name)
       - task: UseDotNet@2
         displayName: "Use .Net Core 2.1.700"
         inputs:
           version: 2.1.700
 
       - task: Cache@2
+        displayName: Cache NuGet packages
         inputs:
           key: 'nuget | "$(Agent.OS)"'
           restoreKeys: |
             nuget | "$(Agent.OS)"
             nuget
           path: $(NUGET_PACKAGES)
-        displayName: Cache NuGet packages
+          cacheHitVar: $(cacheHit)
 
-      # - task: DotNetCoreCLI@2
-      #   displayName: "restore packages"
-      #   inputs:
-      #     command: restore
-      #     projects: "**/*.csproj"
+      - task: DotNetCoreCLI@2
+        condition: eq(variables['cacheHit'], 'true')
+        displayName: "Restore Packages"
+        inputs:
+          command: restore
+          projects: "**/*.csproj"
 
       - task: DotNetCoreCLI@2
         displayName: "build"
         inputs:
           command: publish
           publishWebProjects: false
-          projects: "**/demo-dot-net-2.csproj"
+          projects: "**/*.csproj"
+          feedsToUse: config
+          nugetConfigPath: '$(Build.Repository.Name)/NuGet.Config'
         
       - task: PublishBuildArtifacts@1
         displayName: "publish artifacts"
         inputs:
-          ArtifactName: Demo 2
+          ArtifactName: Dot Net Demo Artifacts
