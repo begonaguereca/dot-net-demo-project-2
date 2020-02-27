@@ -25,11 +25,11 @@ jobs:
           path: $(NUGET_PACKAGES)
         displayName: Cache NuGet packages
 
-      - task: DotNetCoreCLI@2
-        displayName: "restore packages"
-        inputs:
-          command: restore
-          projects: "**/*.csproj"
+      # - task: DotNetCoreCLI@2
+      #   displayName: "restore packages"
+      #   inputs:
+      #     command: restore
+      #     projects: "**/*.csproj"
 
       - task: DotNetCoreCLI@2
         displayName: "build"
