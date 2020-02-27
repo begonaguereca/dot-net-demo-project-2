@@ -5,5 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>demo_dot_net_2</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
 
 </Project>
