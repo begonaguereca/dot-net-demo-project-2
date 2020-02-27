@@ -9,8 +9,8 @@ trigger:
 jobs:
   - job: DotNet2Test
     pool:
-      vmImage: 'macOS-latest'
-      # name: BegonaDev
+      # vmImage: 'macOS-latest'
+      name: BegonaDev
     steps:
       - script: echo $(Build.Repository.Name)
       - task: UseDotNet@2
