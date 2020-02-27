@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>demo_dot_net_2</RootNamespace>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <packageRestore>
       <add key="enabled" value="True" />
       <add key="automatic" value="True" />
